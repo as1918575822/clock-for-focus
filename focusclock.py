@@ -9,30 +9,42 @@ break_time = 5 * 60
 # 设置循环次数
 cycles = 4
 
-# 开始循环
-for i in range(cycles):
-    # 清屏
-    os.system('cls' if os.name == 'nt' else 'clear')
-    # 显示当前是第几个循环
-    print(f'Cycle {i + 1} of {cycles}')
-    # 显示开始工作的提示
-    print('Start working...')
-    # 播放开始工作的声音（需要事先准备一个start.wav文件）
-    os.system('start start.wav')
-    # 等待工作时间结束
-    time.sleep(work_time)
-    # 清屏
-    os.system('cls' if os.name == 'nt' else 'clear')
-    # 显示开始休息的提示
-    print('Take a break...')
-    # 播放开始休息的声音（需要事先准备一个break.wav文件）
-    os.system('start break.wav')
-    # 等待休息时间结束
-    time.sleep(break_time)
+# 定义一个类来表示一个循环
+class Cycle:
+  def __init__(self, i, work_time, break_time):
+    self.i = i
+    self.work_time = work_time
+    self.break_time = break_time
 
-# 清屏
-os.system('cls' if os.name == 'nt' else 'clear')
+  def run(self):
+    # 清屏
+    os.system('cls' if os.name == 'nt' else 'clear')
+    # 显示当前是第几个循环
+    print(f'Cycle {self.i + 1} of {cycles}')
+
+    # 播放开始工作的声音
+    os.system(f'start start.wav')
+
+    # 等待工作时间结束
+    time.sleep(self.work_time)
+
+    # 播放开始休息的声音
+    os.system(f'start break.wav')
+
+    # 等待休息时间结束
+    time.sleep(self.break_time)
+
+    # 显示完成当前循环的提示
+    print('Cycle {self.i + 1} completed.')
+
+# 创建一个循环对象
+cycle = Cycle(0, work_time, break_time)
+
+# 循环执行所有循环
+for i in range(cycles):
+  cycle.run()
+
 # 显示完成所有循环的提示
 print('You have completed all cycles. Well done!')
-# 播放完成所有循环的声音（需要事先准备一个done.wav文件）
+# 播放完成所有循环的声音
 os.system('start done.wav')
