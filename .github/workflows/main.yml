@@ -1,7 +1,7 @@
 name: run focusclock.py
 on:
   schedule:
-    - cron: '*/30 * * * *' # run every 30 minutes
+    - cron: '0 * * * *' # run every hour
   workflow_dispatch: # add this line to enable manual trigger
 jobs:
   build:
