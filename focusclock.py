@@ -11,7 +11,7 @@ cycles = 4
 
 # 定义一个类来表示一个循环
 class Cycle:
-  def __init__(self, i, work_time, break_time):
+  def __init__(self, i, work_time, break_time):
     self.i = i
     self.work_time = work_time
     self.break_time = break_time
